@@ -6,18 +6,26 @@ const mongodb=require('mongodb')
 
 const mongoURI = 'mongodb+srv://shumsd145:shubhamsh@cluster0-zsxx7.mongodb.net/test?retryWrites=true&w=majority';
 
-app.get('/', (req, res) => {
+app.get('/postdata', (req, res) => {
     let readStream = fs.createReadStream('converted_data.json').pipe(ndjson.parse());
-    
-    const chunks = [];
-    var inc=0;
     readStream.on('data', (data) => {
-        chunks.push(data);
-        console.log(inc)
-        inc++
-    });
-    readStream.on('end',()=>{
-        
+        mongodb.MongoClient.connect(mongoURI,(err,dbclient)=>{
+          if(err){
+              console.log('connection failed')
+              res.status(503)
+              res.send('connection failed with db')
+              return
+          }
+          dbclient.db('greendeck').collection('product').insert(data,(err,response)=>{
+            if(err){
+              console.log('post failed',error)
+              res.status(400)
+              res.send('error while inserting')
+              return
+            }
+            res.send('success')
+          })
+      })
     })
 });
 

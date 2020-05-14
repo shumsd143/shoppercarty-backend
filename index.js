@@ -42,7 +42,6 @@ app.post('/',(req,res)=>{
                 }
             }
             else if(data.operator==='contains'){
-
                 op={
                     $regex:data.value.toLowerCase()
                 }
