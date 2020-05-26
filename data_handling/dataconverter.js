@@ -4,7 +4,7 @@ const fs = require('fs');
 const ndjson = require('ndjson'); 
 const mongodb=require('mongodb')
 
-const mongoURI = 'mongodb+srv://shumsd145:shubhamsh@cluster0-zsxx7.mongodb.net/test?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://todos:shubham@cluster0-vh32b.mongodb.net/test?retryWrites=true&w=majority';
 
 app.get('/postdata', (req, res) => {
     let readStream = fs.createReadStream('converted_data.json').pipe(ndjson.parse());

@@ -1,5 +1,5 @@
 const mongodb=require('mongodb')
-const mongoURI = 'mongodb+srv://todos:shubhamsh@cluster0-vh32b.mongodb.net/test?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://todos:shubham@cluster0-vh32b.mongodb.net/test?retryWrites=true&w=majority';
 
 function filtering(body,response,page){
     mongodb.MongoClient.connect(mongoURI,(err,dbclient)=>{
